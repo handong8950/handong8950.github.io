@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="企业网络安全防护体系建设封面">
+  <rect width="1200" height="750" fill="#151411"/>
+  <path d="M150 128h900v494H150z" fill="#f7f2e8" stroke="#ffffff" stroke-width="8"/>
+  <path d="M220 198h760M220 278h760M220 358h760M220 438h760M220 518h760" stroke="#d8d1c3" stroke-width="5"/>
+  <path d="M300 198v320M470 198v320M640 198v320M810 198v320" stroke="#d8d1c3" stroke-width="5"/>
+  <path d="M600 252l166 72v102c0 118-70 183-166 224-96-41-166-106-166-224V324l166-72z" fill="#0f766e"/>
+  <path d="M600 304l102 44v72c0 68-40 110-102 140-62-30-102-72-102-140v-72l102-44z" fill="#ffffff"/>
+  <path d="M557 419l35 36 72-90" fill="none" stroke="#d95b43" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="238" r="18" fill="#d95b43"/>
+  <circle cx="944" cy="478" r="18" fill="#b47a1d"/>
+  <circle cx="300" cy="518" r="18" fill="#0f766e"/>
+</svg>

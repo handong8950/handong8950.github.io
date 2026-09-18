@@ -1,0 +1,77 @@
+[
+  {
+    "id": "family-tree-system",
+    "title": "家族族谱管理系统",
+    "role": "课程设计 / C++",
+    "category": "软件工程",
+    "year": "2026",
+    "status": "已完成",
+    "featured": true,
+    "sortOrder": 1,
+    "image": "assets/project-family-tree.svg",
+    "summary": "围绕家族成员、关系维护、查询检索和数据展示构建的命令行管理系统。",
+    "description": "项目重点在于数据结构建模、关系查询、交互流程和文件持久化。适合作为软件设计能力、C++ 基础和问题拆解能力的展示。",
+    "tags": [
+      "C++",
+      "数据结构",
+      "文件存储",
+      "课程设计"
+    ],
+    "links": [
+      {
+        "label": "项目说明",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "security-defense-plan",
+    "title": "企业网络安全防护体系建设",
+    "role": "方案设计 / 安全规划",
+    "category": "网络安全",
+    "year": "2026",
+    "status": "整理中",
+    "featured": true,
+    "sortOrder": 2,
+    "image": "assets/project-security.svg",
+    "summary": "从资产梳理、边界防护、终端安全、监控审计到应急响应，设计分层防护方案。",
+    "description": "该项目展示安全体系化思维：先识别风险，再建立策略、工具、流程和复盘机制，强调可落地的建设步骤。",
+    "tags": [
+      "网络安全",
+      "防护体系",
+      "风险评估",
+      "应急响应"
+    ],
+    "links": [
+      {
+        "label": "文档",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "portfolio-site",
+    "title": "个人作品集网站",
+    "role": "全栈开发 / Node.js",
+    "category": "Web 开发",
+    "year": "2026",
+    "status": "进行中",
+    "featured": true,
+    "sortOrder": 3,
+    "image": "assets/project-portfolio.svg",
+    "summary": "公开展示作品，后台通过管理员口令维护项目数据，适合个人长期迭代。",
+    "description": "网站采用公开展示页和受保护后台分离的结构。访客无需登录即可浏览，管理员登录后可以新增、编辑、删除项目。",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js"
+    ],
+    "links": [
+      {
+        "label": "当前网站",
+        "url": "/"
+      }
+    ]
+  }
+]

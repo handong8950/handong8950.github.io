@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="家族族谱管理系统封面">
+  <rect width="1200" height="750" fill="#f3efe4"/>
+  <path d="M0 112h1200M0 262h1200M0 412h1200M0 562h1200M180 0v750M420 0v750M660 0v750M900 0v750" stroke="#ded6c8" stroke-width="3"/>
+  <rect x="92" y="82" width="1016" height="586" rx="26" fill="#fffaf1" stroke="#181512" stroke-width="8"/>
+  <path d="M600 204v86M370 376v74M600 376v74M830 376v74M370 290h460M370 450h460" fill="none" stroke="#0f766e" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#161412">
+    <circle cx="600" cy="174" r="64"/>
+    <circle cx="370" cy="330" r="56"/>
+    <circle cx="600" cy="330" r="56"/>
+    <circle cx="830" cy="330" r="56"/>
+    <circle cx="370" cy="512" r="48"/>
+    <circle cx="600" cy="512" r="48"/>
+    <circle cx="830" cy="512" r="48"/>
+  </g>
+  <g fill="#d95b43">
+    <circle cx="600" cy="174" r="22"/>
+    <circle cx="370" cy="330" r="18"/>
+    <circle cx="600" cy="330" r="18"/>
+    <circle cx="830" cy="330" r="18"/>
+  </g>
+  <rect x="174" y="610" width="852" height="18" rx="9" fill="#b47a1d"/>
+</svg>

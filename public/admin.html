@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>作品集后台管理</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="stylesheet" href="styles.css?v=20260918" />
+    <script src="admin.js?v=20260918" defer></script>
+  </head>
+  <body class="admin-body">
+    <main class="admin-root">
+      <section class="login-view" id="loginView">
+        <div class="login-panel">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span>Portfolio Admin</span>
+          </a>
+          <div>
+            <p class="eyebrow">Private Area</p>
+            <h1>管理员登录</h1>
+            <p>公开页面任何人都可以看；新增、编辑、删除项目需要管理员密码。</p>
+          </div>
+          <form id="loginForm" class="stack-form">
+            <label>
+              <span>管理员密码</span>
+              <input name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button class="primary-action" type="submit">登录后台</button>
+          </form>
+          <p class="form-note">如果没有设置 `.env`，首次启动会在 `data/admin-secret.txt` 生成一个本地密码。</p>
+        </div>
+      </section>
+
+      <section class="admin-shell" id="adminView" hidden>
+        <header class="admin-topbar">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h1>作品集管理</h1>
+          </div>
+          <div class="admin-actions">
+            <a class="secondary-action" href="/" target="_blank" rel="noreferrer">查看网站</a>
+            <button class="ghost-button" id="logoutButton" type="button">退出</button>
+          </div>
+        </header>
+
+        <div class="admin-grid">
+          <section class="admin-panel" aria-labelledby="siteSettingsHeading">
+            <div class="panel-heading">
+              <h2 id="siteSettingsHeading">个人信息</h2>
+              <span>展示页顶部与联系区</span>
+            </div>
+            <form id="siteForm" class="stack-form">
+              <div class="field-grid">
+                <label>
+                  <span>姓名 / 品牌名</span>
+                  <input name="name" required />
+                </label>
+                <label>
+                  <span>页面标题</span>
+                  <input name="title" required />
+                </label>
+              </div>
+              <label>
+                <span>一句话介绍</span>
+                <input name="headline" />
+              </label>
+              <label>
+                <span>详细简介</span>
+                <textarea name="summary" rows="4"></textarea>
+              </label>
+              <div class="field-grid">
+                <label>
+                  <span>所在地</span>
+                  <input name="location" />
+                </label>
+                <label>
+                  <span>当前状态</span>
+                  <input name="availability" />
+                </label>
+              </div>
+              <div class="field-grid">
+                <label>
+                  <span>邮箱</span>
+                  <input name="email" type="email" />
+                </label>
+                <label>
+                  <span>电话</span>
+                  <input name="phone" />
+                </label>
+              </div>
+              <label>
+                <span>简历链接</span>
+                <input name="resumeUrl" placeholder="https://..." />
+              </label>
+              <div class="field-grid">
+                <label>
+                  <span>GitHub 链接</span>
+                  <input name="githubUrl" placeholder="https://github.com/..." />
+                </label>
+                <label>
+                  <span>个人博客 / 其他链接</span>
+                  <input name="blogUrl" placeholder="https://..." />
+                </label>
+              </div>
+              <button class="primary-action" type="submit">保存个人信息</button>
+            </form>
+          </section>
+
+          <section class="admin-panel" aria-labelledby="projectFormHeading">
+            <div class="panel-heading">
+              <h2 id="projectFormHeading">项目编辑</h2>
+              <span id="formMode">新增项目</span>
+            </div>
+            <form id="projectForm" class="stack-form">
+              <input name="id" type="hidden" />
+              <div class="field-grid">
+                <label>
+                  <span>项目标题</span>
+                  <input name="title" required />
+                </label>
+                <label>
+                  <span>你的角色</span>
+                  <input name="role" placeholder="全栈开发 / 课程设计" />
+                </label>
+              </div>
+              <div class="field-grid">
+                <label>
+                  <span>方向分类</span>
+                  <input name="category" placeholder="Web 开发" />
+                </label>
+                <label>
+                  <span>年份</span>
+                  <input name="year" inputmode="numeric" />
+                </label>
+              </div>
+              <div class="field-grid">
+                <label>
+                  <span>状态</span>
+                  <select name="status">
+                    <option>进行中</option>
+                    <option>已完成</option>
+                    <option>整理中</option>
+                    <option>已上线</option>
+                  </select>
+                </label>
+                <label>
+                  <span>排序</span>
+                  <input name="sortOrder" type="number" min="1" step="1" value="99" />
+                </label>
+              </div>
+              <label class="check-row">
+                <input name="featured" type="checkbox" />
+                <span>在首页重点展示</span>
+              </label>
+              <label>
+                <span>封面图片</span>
+                <input name="image" placeholder="/assets/project-portfolio.svg 或 https://..." />
+              </label>
+              <label>
+                <span>项目摘要</span>
+                <textarea name="summary" rows="3"></textarea>
+              </label>
+              <label>
+                <span>详细说明</span>
+                <textarea name="description" rows="5"></textarea>
+              </label>
+              <label>
+                <span>技术标签</span>
+                <input name="tags" placeholder="HTML, CSS, JavaScript" />
+              </label>
+              <div class="field-grid">
+                <label>
+                  <span>演示链接</span>
+                  <input name="demoUrl" placeholder="https://..." />
+                </label>
+                <label>
+                  <span>源码 / 文档链接</span>
+                  <input name="codeUrl" placeholder="https://..." />
+                </label>
+              </div>
+              <div class="button-row">
+                <button class="primary-action" type="submit">保存项目</button>
+                <button class="ghost-button" id="resetProjectForm" type="button">清空</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <section class="admin-panel project-manager" aria-labelledby="projectManagerHeading">
+          <div class="panel-heading">
+            <h2 id="projectManagerHeading">项目列表</h2>
+            <span id="projectTotal">0 个项目</span>
+          </div>
+          <div class="admin-list" id="adminProjectList"></div>
+        </section>
+      </section>
+    </main>
+    <div class="toast" id="toast" hidden></div>
+  </body>
+</html>

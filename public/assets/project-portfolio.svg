@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="个人作品集网站封面">
+  <rect width="1200" height="750" fill="#f7f6f1"/>
+  <rect x="92" y="78" width="1016" height="594" rx="28" fill="#161412"/>
+  <rect x="132" y="128" width="404" height="230" rx="16" fill="#f7f6f1"/>
+  <rect x="572" y="128" width="496" height="88" rx="14" fill="#0f766e"/>
+  <rect x="572" y="250" width="228" height="244" rx="16" fill="#fffaf2"/>
+  <rect x="840" y="250" width="228" height="244" rx="16" fill="#fffaf2"/>
+  <rect x="132" y="398" width="404" height="96" rx="16" fill="#d95b43"/>
+  <rect x="132" y="536" width="936" height="86" rx="16" fill="#fffaf2"/>
+  <circle cx="220" cy="222" r="52" fill="#b47a1d"/>
+  <path d="M314 178h158M314 224h122M314 270h180" stroke="#161412" stroke-width="18" stroke-linecap="round"/>
+  <path d="M628 302h116M628 352h92M628 402h132M896 302h116M896 352h92M896 402h132" stroke="#161412" stroke-width="18" stroke-linecap="round"/>
+  <path d="M206 581h470M724 581h248" stroke="#161412" stroke-width="18" stroke-linecap="round"/>
+</svg>
