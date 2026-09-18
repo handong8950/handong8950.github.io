@@ -1,0 +1,29 @@
+{
+  "name": "韩东",
+  "title": "个人作品集",
+  "headline": "把想法做成可使用、可展示、可维护的作品。",
+  "summary": "这里集中展示我的课程项目、工程实践和个人创作。每个项目都保留目标、技术栈、成果和可访问链接，方便访客快速了解我的能力边界。如果你有合作或项目讨论的意向，欢迎页面底部的联系方式直接联系我。",
+  "location": "中国",
+  "availability": "开放交流与项目合作",
+  "email": "hello@example.com",
+  "phone": "",
+  "resumeUrl": "",
+  "badges": [
+    { "label": "软件工程", "variant": "accent" },
+    { "label": "网络安全", "variant": "accent" },
+    { "label": "Web 开发", "variant": "accent" },
+    { "label": "C++ / Node.js", "variant": "default" },
+    { "label": "课程设计", "variant": "default" },
+    { "label": "持续学习", "variant": "green" }
+  ],
+  "socials": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/"
+    },
+    {
+      "label": "邮箱",
+      "url": "mailto:hello@example.com"
+    }
+  ]
+}

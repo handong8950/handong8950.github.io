@@ -1,8 +1,7 @@
 const state = {
   site: {},
   projects: [],
-  selectedCategory: "全部",
-  search: ""
+  selectedCategory: "全部"
 };
 
 const baseUrl = window.location.pathname.replace(/[^/]*$/, "");
@@ -23,27 +22,35 @@ function normalizePath(p) {
   return p;
 }
 
+function safeUrl(url) {
+  const value = String(url || "").trim();
+  if (!value) return "#";
+  if (value.startsWith("/") || value.startsWith("#") || value.startsWith("mailto:")) return value;
+  try {
+    const parsed = new URL(value);
+    return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : "#";
+  } catch {
+    return "#";
+  }
+}
+
 const els = {
   brandName: document.querySelector("#brandName"),
   profileTitle: document.querySelector("#profileTitle"),
   heroName: document.querySelector("#heroName"),
   heroHeadline: document.querySelector("#heroHeadline"),
   heroSummary: document.querySelector("#heroSummary"),
+  heroBadges: document.querySelector("#heroBadges"),
+  profileLocation: document.querySelector("#profileLocation"),
+  profileAvailability: document.querySelector("#profileAvailability"),
   projectCount: document.querySelector("#projectCount"),
-  categoryCount: document.querySelector("#categoryCount"),
-  featuredCount: document.querySelector("#featuredCount"),
-  galleryLeadTitle: document.querySelector("#galleryLeadTitle"),
-  heroGallery: document.querySelector("#heroGallery"),
-  searchInput: document.querySelector("#searchInput"),
   categoryTabs: document.querySelector("#categoryTabs"),
   projectGrid: document.querySelector("#projectGrid"),
   emptyState: document.querySelector("#emptyState"),
-  aboutText: document.querySelector("#aboutText"),
-  profileLocation: document.querySelector("#profileLocation"),
-  profileAvailability: document.querySelector("#profileAvailability"),
-  profileEmail: document.querySelector("#profileEmail"),
   contactLinks: document.querySelector("#contactLinks"),
+  contactCard: document.querySelector("#contactCard"),
   footerName: document.querySelector("#footerName"),
+  footerYear: document.querySelector("#footerYear"),
   modal: document.querySelector("#projectModal"),
   closeModal: document.querySelector("#closeModal"),
   modalImage: document.querySelector("#modalImage"),
@@ -56,6 +63,8 @@ const els = {
 };
 
 async function init() {
+  els.footerYear.textContent = new Date().getFullYear();
+
   if (!isLocal) {
     document.querySelectorAll(".admin-link").forEach((el) => {
       el.hidden = true;
@@ -80,55 +89,37 @@ async function init() {
   }
 }
 
-function render() {
-  document.title = `${state.site.name || "我的"} - ${state.site.title || "个人作品集"}`;
-  els.brandName.textContent = state.site.name || "Portfolio";
-  els.profileTitle.textContent = state.site.title || "个人作品集";
-  els.heroName.textContent = state.site.name || "我的作品集";
-  els.heroHeadline.textContent = state.site.headline || "把想法做成可使用、可展示、可维护的作品。";
-  els.heroSummary.textContent = state.site.summary || "";
-  els.footerName.textContent = state.site.name || "Portfolio";
-  els.aboutText.textContent = state.site.summary || "这里会展示我的个人介绍、能力方向和代表作品。";
-  els.profileLocation.textContent = state.site.location || "中国";
-  els.profileAvailability.textContent = state.site.availability || "开放交流";
-  els.profileEmail.textContent = state.site.email || "hello@example.com";
-
-  const categories = uniqueCategories();
-  const featured = state.projects.filter((project) => project.featured);
-  els.projectCount.textContent = String(state.projects.length);
-  els.categoryCount.textContent = String(categories.length);
-  els.featuredCount.textContent = String(featured.length);
-  els.galleryLeadTitle.textContent = featured[0]?.title || state.projects[0]?.title || "近期作品";
-
-  renderGallery(featured.length ? featured : state.projects.slice(0, 3));
-  renderTabs(categories);
-  renderProjects();
-  renderContactLinks();
-}
-
 function uniqueCategories() {
   return [...new Set(state.projects.map((project) => project.category || "作品"))];
 }
 
-function renderGallery(projects) {
-  els.heroGallery.replaceChildren();
-  projects.slice(0, 3).forEach((project) => {
-    const card = document.createElement("article");
-    card.className = "gallery-card";
+function render() {
+  document.title = `${state.site.name || "我的"} - ${state.site.title || "个人作品集"}`;
+  els.brandName.textContent = state.site.name || "Portfolio";
+  els.footerName.textContent = state.site.name || "Portfolio";
+  els.profileTitle.textContent = state.site.title || "个人作品集";
+  els.heroName.textContent = state.site.name || "我的作品集";
+  els.heroHeadline.textContent = state.site.headline || "把想法做成可使用、可展示、可维护的作品。";
+  els.heroSummary.textContent = state.site.summary || "";
+  els.profileLocation.textContent = state.site.location || "中国";
+  els.profileAvailability.textContent = state.site.availability || "开放交流";
+  els.projectCount.textContent = String(state.projects.length);
 
-    const image = document.createElement("img");
-    image.src = normalizePath(project.image) || fallbackImage;
-    image.alt = "";
-    image.loading = "lazy";
+  renderBadges();
+  renderTabs(uniqueCategories());
+  renderProjects();
+  renderContact();
+}
 
-    const content = document.createElement("div");
-    const title = document.createElement("h3");
-    title.textContent = project.title;
-    const summary = document.createElement("p");
-    summary.textContent = project.summary || project.role || "";
-    content.append(title, summary);
-    card.append(image, content);
-    els.heroGallery.append(card);
+function renderBadges() {
+  els.heroBadges.replaceChildren();
+  const badges = Array.isArray(state.site.badges) ? state.site.badges : [];
+  badges.forEach((badge) => {
+    const span = document.createElement("span");
+    const variant = typeof badge === "string" ? "default" : badge.variant;
+    span.className = `badge is-${variant || "default"}`;
+    span.textContent = typeof badge === "string" ? badge : badge.label;
+    els.heroBadges.append(span);
   });
 }
 
@@ -150,22 +141,9 @@ function renderTabs(categories) {
 }
 
 function filteredProjects() {
-  const keyword = state.search.trim().toLowerCase();
   return state.projects.filter((project) => {
     const inCategory = state.selectedCategory === "全部" || project.category === state.selectedCategory;
-    const haystack = [
-      project.title,
-      project.role,
-      project.category,
-      project.year,
-      project.status,
-      project.summary,
-      project.description,
-      ...(project.tags || [])
-    ]
-      .join(" ")
-      .toLowerCase();
-    return inCategory && (!keyword || haystack.includes(keyword));
+    return inCategory;
   });
 }
 
@@ -198,7 +176,15 @@ function renderProjects() {
     title.textContent = project.title;
     const summary = document.createElement("p");
     summary.textContent = project.summary || "";
-    const tags = renderTags(project.tags || []);
+
+    const tags = document.createElement("div");
+    tags.className = "tag-list";
+    (project.tags || []).slice(0, 5).forEach((tag) => {
+      const span = document.createElement("span");
+      span.textContent = tag;
+      tags.append(span);
+    });
+
     const button = document.createElement("button");
     button.className = "open-project";
     button.type = "button";
@@ -211,27 +197,14 @@ function renderProjects() {
   });
 }
 
-function renderTags(tags) {
-  const wrap = document.createElement("div");
-  wrap.className = "tag-list";
-  appendTags(wrap, tags);
-  return wrap;
-}
-
-function appendTags(container, tags) {
-  tags.slice(0, 6).forEach((tag) => {
-    const item = document.createElement("span");
-    item.textContent = tag;
-    container.append(item);
-  });
-}
-
-function renderContactLinks() {
+function renderContact() {
   els.contactLinks.replaceChildren();
   const links = [];
-  if (state.site.email) links.push({ label: "发送邮件", url: `mailto:${state.site.email}` });
+  if (state.site.email) links.push({ label: "发送邮件", url: `mailto:${state.site.email}`, primary: true });
   if (state.site.resumeUrl) links.push({ label: "查看简历", url: state.site.resumeUrl });
-  if (Array.isArray(state.site.socials)) links.push(...state.site.socials);
+  if (Array.isArray(state.site.socials)) {
+    state.site.socials.forEach((s) => links.push({ ...s }));
+  }
 
   links
     .filter((link) => link.label && link.url)
@@ -243,8 +216,25 @@ function renderContactLinks() {
         anchor.target = "_blank";
         anchor.rel = "noreferrer";
       }
+      if (!link.primary) anchor.classList.add("secondary");
       els.contactLinks.append(anchor);
     });
+
+  els.contactCard.replaceChildren();
+  const facts = [
+    { label: "邮箱", value: state.site.email || "—" },
+    { label: "所在地", value: state.site.location || "—" },
+    { label: "状态", value: state.site.availability || "—" }
+  ];
+  facts.forEach((fact) => {
+    const wrap = document.createElement("div");
+    const dt = document.createElement("dt");
+    dt.textContent = fact.label;
+    const dd = document.createElement("dd");
+    dd.textContent = fact.value;
+    wrap.append(dt, dd);
+    els.contactCard.append(wrap);
+  });
 }
 
 function openProject(project) {
@@ -254,7 +244,11 @@ function openProject(project) {
   els.modalSummary.textContent = project.summary || "";
   els.modalDescription.textContent = project.description || "";
   els.modalTags.replaceChildren();
-  appendTags(els.modalTags, project.tags || []);
+  (project.tags || []).forEach((tag) => {
+    const span = document.createElement("span");
+    span.textContent = tag;
+    els.modalTags.append(span);
+  });
   els.modalLinks.replaceChildren();
 
   (project.links || []).forEach((link) => {
@@ -277,23 +271,6 @@ function closeModal() {
   els.modal.hidden = true;
   document.body.style.overflow = "";
 }
-
-function safeUrl(url) {
-  const value = String(url || "").trim();
-  if (!value) return "#";
-  if (value.startsWith("/") || value.startsWith("#") || value.startsWith("mailto:")) return value;
-  try {
-    const parsed = new URL(value);
-    return ["http:", "https:"].includes(parsed.protocol) ? parsed.href : "#";
-  } catch {
-    return "#";
-  }
-}
-
-els.searchInput.addEventListener("input", (event) => {
-  state.search = event.target.value;
-  renderProjects();
-});
 
 els.closeModal.addEventListener("click", closeModal);
 els.modal.addEventListener("click", (event) => {

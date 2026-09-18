@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>个人作品集</title>
+    <meta name="description" content="个人作品集展示网站" />
+    <link rel="stylesheet" href="styles.css?v=20260918b" />
+    <script src="app.js?v=20260918b" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回顶部">
+        <span id="brandName">Portfolio</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+        <a href="admin" class="admin-link">管理</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="about" aria-labelledby="heroName">
+        <img class="avatar" id="heroAvatar" src="assets/avatar.svg" alt="个人头像" width="140" height="140" />
+        <p class="eyebrow" id="profileTitle">自我介绍</p>
+        <h1 id="heroName">我的作品集</h1>
+        <p class="headline" id="heroHeadline">把想法做成可使用、可展示、可维护的作品。</p>
+        <div class="badges" id="heroBadges" aria-label="能力与方向"></div>
+        <p class="bio" id="heroSummary"></p>
+
+        <dl class="quick-facts" aria-label="基本信息">
+          <div>
+            <dt>所在地</dt>
+            <dd id="profileLocation">中国</dd>
+          </div>
+          <div>
+            <dt>当前状态</dt>
+            <dd id="profileAvailability">开放交流</dd>
+          </div>
+          <div>
+            <dt>项目数</dt>
+            <dd id="projectCount">0</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="projects-section" id="projects" aria-labelledby="projectHeading">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Projects</p>
+          <h2 id="projectHeading">项目作品</h2>
+        </div>
+        <div class="filter-tabs" id="categoryTabs" aria-label="按方向筛选"></div>
+        <div class="project-grid" id="projectGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <strong>暂时没有匹配的项目</strong>
+          <span>换个分类试试。</span>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contactHeading">
+        <div class="contact-lead">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contactHeading">一起聊聊下一个作品</h2>
+          <p class="contact-sub">如果有合作、招聘或项目讨论的意向，欢迎通过下面任意方式联系我。</p>
+        </div>
+        <div class="contact-actions" id="contactLinks"></div>
+        <div class="contact-card" id="contactCard"></div>
+      </section>
+    </main>
+
+    <div class="modal" id="projectModal" hidden>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="icon-button modal-close" id="closeModal" type="button" aria-label="关闭">×</button>
+        <img id="modalImage" alt="" />
+        <div class="modal-content">
+          <p class="eyebrow" id="modalMeta"></p>
+          <h2 id="modalTitle"></h2>
+          <p id="modalSummary"></p>
+          <p id="modalDescription"></p>
+          <div class="tag-list" id="modalTags"></div>
+          <div class="link-row" id="modalLinks"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <span id="footerName">Portfolio</span>
+      <span>© <span id="footerYear"></span> · 公开可浏览，后台受保护。</span>
+    </footer>
+  </body>
+</html>
