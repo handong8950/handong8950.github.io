@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="证书示例">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#f9d71c" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bg)" />
+  <rect x="20" y="20" width="760" height="520" fill="none" stroke="url(#gold)" stroke-width="3" />
+  <rect x="32" y="32" width="736" height="496" fill="none" stroke="url(#gold)" stroke-width="1" />
+  <text x="400" y="110" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="bold" fill="#1e3a5f">荣誉证书</text>
+  <text x="400" y="145" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#64748b" letter-spacing="8">CERTIFICATE</text>
+  <line x1="300" y1="170" x2="500" y2="170" stroke="url(#gold)" stroke-width="2" />
+  <text x="400" y="220" text-anchor="middle" font-family="serif" font-size="22" fill="#334155">兹证明</text>
+  <text x="400" y="270" text-anchor="middle" font-family="serif" font-size="32" font-weight="bold" fill="#1e293b">韩 东</text>
+  <text x="400" y="315" text-anchor="middle" font-family="serif" font-size="16" fill="#475569">同学在 2026 年度课程设计中表现优异</text>
+  <text x="400" y="345" text-anchor="middle" font-family="serif" font-size="16" fill="#475569">完成《家族族谱管理系统》项目，特颁此证</text>
+  <circle cx="650" cy="450" r="50" fill="none" stroke="#dc2626" stroke-width="3" />
+  <text x="650" y="445" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">项目</text>
+  <text x="650" y="465" text-anchor="middle" font-size="12" fill="#dc2626" font-weight="bold">评审章</text>
+  <text x="150" y="450" font-family="serif" font-size="14" fill="#64748b">颁发日期：2026 年 9 月</text>
+</svg>

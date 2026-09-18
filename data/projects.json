@@ -19,8 +19,19 @@
     ],
     "links": [
       {
-        "label": "项目说明",
-        "url": "#"
+        "label": "代码仓库",
+        "url": "https://github.com/handong8950",
+        "type": "repo"
+      },
+      {
+        "label": "GitHub 主页",
+        "url": "https://github.com/handong8950",
+        "type": "github"
+      },
+      {
+        "label": "课程证书",
+        "url": "assets/cert-demo.svg",
+        "type": "cert"
       }
     ]
   },
@@ -44,8 +55,14 @@
     ],
     "links": [
       {
-        "label": "文档",
-        "url": "#"
+        "label": "方案文档",
+        "url": "https://github.com/handong8950",
+        "type": "repo"
+      },
+      {
+        "label": "GitHub 主页",
+        "url": "https://github.com/handong8950",
+        "type": "github"
       }
     ]
   },
@@ -70,7 +87,18 @@
     "links": [
       {
         "label": "当前网站",
-        "url": "/"
+        "url": "https://handong8950.github.io",
+        "type": "site"
+      },
+      {
+        "label": "代码仓库",
+        "url": "https://github.com/handong8950/handong8950.github.io",
+        "type": "repo"
+      },
+      {
+        "label": "GitHub 主页",
+        "url": "https://github.com/handong8950",
+        "type": "github"
       }
     ]
   }

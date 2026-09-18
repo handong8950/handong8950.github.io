@@ -572,9 +572,11 @@ h2 {
   margin-top: 22px;
 }
 
-.modal-content .link-row a {
+.modal-content .link-row a,
+.modal-content .link-row .link-btn {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: 40px;
   padding: 0 18px;
   border: 1px solid var(--line);
@@ -583,13 +585,89 @@ h2 {
   color: var(--accent);
   font-weight: 500;
   font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.modal-content .link-row a:hover {
+.modal-content .link-row a:hover,
+.modal-content .link-row .link-btn:hover {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
   text-decoration: none;
+}
+
+.link-btn .link-icon { font-size: 0.95rem; line-height: 1; }
+
+.link-btn.is-image {
+  color: var(--green);
+  border-color: rgba(21, 128, 61, 0.3);
+}
+
+.link-btn.is-image:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+/* ---------- Image Lightbox ---------- */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.image-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.image-modal-content {
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 1100px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  background: #fff;
+}
+
+.image-modal-caption {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.image-modal-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1d1d1f;
+  font-size: 1.2rem;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .icon-button {

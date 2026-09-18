@@ -59,7 +59,12 @@ const els = {
   modalSummary: document.querySelector("#modalSummary"),
   modalDescription: document.querySelector("#modalDescription"),
   modalTags: document.querySelector("#modalTags"),
-  modalLinks: document.querySelector("#modalLinks")
+  modalLinks: document.querySelector("#modalLinks"),
+  imageModal: document.querySelector("#imageModal"),
+  imageModalClose: document.querySelector("#imageModalClose"),
+  imageModalImg: document.querySelector("#imageModalImg"),
+  imageModalCaption: document.querySelector("#imageModalCaption"),
+  imageModalBackdrop: document.querySelector("#imageModalBackdrop")
 };
 
 async function init() {
@@ -253,9 +258,27 @@ function openProject(project) {
 
   (project.links || []).forEach((link) => {
     if (!link.label || !link.url) return;
+    const type = link.type || "default";
+
+    if (type === "cert" || type === "image") {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "link-btn is-image";
+      btn.innerHTML = `<span class="link-icon">🖼️</span><span class="link-label">${link.label}</span>`;
+      btn.addEventListener("click", () => openImageModal(link.url, link.label));
+      els.modalLinks.append(btn);
+      return;
+    }
+
     const anchor = document.createElement("a");
     anchor.href = safeUrl(link.url);
-    anchor.textContent = link.label;
+    anchor.className = "link-btn";
+    let icon = "";
+    if (type === "repo") { icon = "📦"; }
+    else if (type === "github") { icon = "🐙"; }
+    else if (type === "demo" || type === "site") { icon = "🔗"; }
+    else { icon = "🔗"; }
+    anchor.innerHTML = `<span class="link-icon">${icon}</span><span class="link-label">${link.label}</span>`;
     if (!anchor.href.startsWith("mailto:") && !anchor.href.startsWith(window.location.origin)) {
       anchor.target = "_blank";
       anchor.rel = "noreferrer";
@@ -272,12 +295,31 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
+function openImageModal(url, caption) {
+  els.imageModalImg.src = normalizePath(url);
+  els.imageModalImg.alt = caption || "";
+  els.imageModalCaption.textContent = caption || "";
+  els.imageModal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeImageModal() {
+  els.imageModal.hidden = true;
+  els.imageModalImg.src = "";
+  document.body.style.overflow = "";
+}
+
 els.closeModal.addEventListener("click", closeModal);
 els.modal.addEventListener("click", (event) => {
   if (event.target === els.modal) closeModal();
 });
+els.imageModalClose.addEventListener("click", closeImageModal);
+els.imageModalBackdrop.addEventListener("click", closeImageModal);
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !els.modal.hidden) closeModal();
+  if (event.key === "Escape") {
+    if (!els.imageModal.hidden) closeImageModal();
+    else if (!els.modal.hidden) closeModal();
+  }
 });
 
 init();
