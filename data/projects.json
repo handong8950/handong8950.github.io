@@ -69,24 +69,27 @@
   {
     "id": "portfolio-site",
     "title": "个人作品集网站",
-    "role": "全栈开发 / Node.js",
+    "role": "全栈开发 / Node.js · GitHub Pages",
     "category": "Web 开发",
     "year": "2026",
-    "status": "进行中",
+    "status": "持续迭代",
     "featured": true,
     "sortOrder": 3,
     "image": "assets/project-portfolio.svg",
-    "summary": "公开展示作品，后台通过管理员口令维护项目数据，适合个人长期迭代。",
-    "description": "网站采用公开展示页和受保护后台分离的结构。访客无需登录即可浏览，管理员登录后可以新增、编辑、删除项目。",
+    "summary": "苹果风格的静态作品集站点,搭配本地 Node.js 后台可视化编辑,推送到 main 自动部署到 GitHub Pages。",
+    "description": "项目采用「静态前端 + 本地后台」分离架构:公开页面是纯 HTML/CSS/JS,无需后端即可被 GitHub Pages 直接托管,加载快、零运行成本;后台基于 Node.js + Express,在本地 /admin 提供可视化编辑能力,改完内容直接写回 data/*.json,git push 后由 GitHub Actions 自动重新部署。支持项目分类筛选、关键词标签、详情灯箱、多类型链接(代码仓库/GitHub 主页/证书图片/外部站点)和图片灯箱放大,导航栏在非 localhost 下自动隐藏管理入口。",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript",
-      "Node.js"
+      "Node.js",
+      "Express",
+      "GitHub Pages",
+      "GitHub Actions"
     ],
     "links": [
       {
-        "label": "当前网站",
+        "label": "在线访问",
         "url": "https://handong8950.github.io",
         "type": "site"
       },
